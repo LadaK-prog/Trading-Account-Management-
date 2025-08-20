@@ -1,0 +1,46 @@
+package service;
+
+import pojo.CashAccount;
+import repository.TradeAccountRepository;
+
+public class CashAccountService implements TradeAccountService {
+
+    private TradeAccountRepository repository;
+
+    public CashAccountService(TradeAccountRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public void deposit(String id, double amount) {
+        CashAccount account = retrieveTradeAccount(id);
+        account.setCashBalance(account.getCashBalance() + amount);
+        repository.updateTradeAccount(account);
+    }
+
+    @Override
+    public void withdraw(String id, double amount) {
+        CashAccount account = retrieveTradeAccount(id);
+        if (account.getCashBalance() < amount) {
+        throw new IllegalArgumentException("Insufficient funds");
+        }
+        account.setCashBalance(account.getCashBalance() - amount);
+        repository.updateTradeAccount(account);
+    }
+
+    public void createTradeAccount(CashAccount tradeAccount) {
+        this.repository.createTradeAccount(tradeAccount);
+    }
+
+    public CashAccount retrieveTradeAccount(String id) {
+        return (CashAccount) this.repository.retrieveTradeAccount(id);
+    }
+
+    public void updateTradeAccount(CashAccount tradeAccount) {
+        this.repository.updateTradeAccount(tradeAccount);
+    }
+
+    public void deleteTradeAccount(String id) {
+        this.repository.deleteTradeAccount(id);
+    }
+}
