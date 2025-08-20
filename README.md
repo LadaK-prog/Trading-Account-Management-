@@ -1,7 +1,6 @@
 # Trading Account Management System
-A Java-based application for managing financial trading accounts, supporting both cash and margin account types.
-The system performs deposits, withdrawals, and balance tracking while processing batch transactions from text files. 
-Designed with object-oriented principles and a service–repository architecture.
+A Java application that simulates a simple trade account management system.  
+It supports **cash accounts** and **margin accounts**, loads account data from files, processes transactions, and prints final account states.
 
 ## Features
 - Supports multiple account types: **Cash** and **Margin**  
